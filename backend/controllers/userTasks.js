@@ -8,6 +8,7 @@ const getAllTasks = asyncWrapper(async (req, res) => {
 });
 
 const createTask = asyncWrapper(async (req, res) => {
+  console.log(req.body)
   const task = await Task.create({
     name: req.body.name,
     completed: req.body.isCompleted,
@@ -37,6 +38,7 @@ const deleteTask = asyncWrapper(async (req, res, next) => {
 const updateTask = asyncWrapper(async (req, res, next) => {
   const { id: taskID } = req.params;
 
+  console.log(req.body);
   const task = await Task.findOneAndUpdate(
     { _id: taskID },
     { name: req.body.name, completed: req.body.isCompleted },
